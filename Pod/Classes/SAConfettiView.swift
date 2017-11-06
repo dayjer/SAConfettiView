@@ -20,13 +20,13 @@ import QuartzCore
   }
   
   var emitter: CAEmitterLayer!
-  @objc var colors: [UIColor] = [UIColor(red:0.95, green:0.40, blue:0.27, alpha:1.0),
+  @objc public var colors: [UIColor] = [UIColor(red:0.95, green:0.40, blue:0.27, alpha:1.0),
                                  UIColor(red:1.00, green:0.78, blue:0.36, alpha:1.0),
                                  UIColor(red:0.48, green:0.78, blue:0.64, alpha:1.0),
                                  UIColor(red:0.30, green:0.76, blue:0.85, alpha:1.0),
                                  UIColor(red:0.58, green:0.39, blue:0.55, alpha:1.0)]
-  @objc var intensity: CGFloat = 0.5
-  var type: ConfettiType = .Confetti
+  @objc public var intensity: CGFloat = 0.5
+  public var type: ConfettiType = .Confetti
   private var active :Bool = false
   
   required public init?(coder aDecoder: NSCoder) {
