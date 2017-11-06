@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-@objc public class SAConfettiView: UIView {
+public class SAConfettiView: UIView {
   
   public enum ConfettiType {
     case Confetti
@@ -20,17 +20,19 @@ import QuartzCore
   }
   
   var emitter: CAEmitterLayer!
-  public var colors: [UIColor]!
-  public var intensity: Float!
-  public var type: ConfettiType!
+  @objc var colors: [UIColor]!
+  @objc var intensity: CGFloat
+  var type: ConfettiType!
   private var active :Bool!
   
   required public init?(coder aDecoder: NSCoder) {
+    intensity = 0.5
     super.init(coder: aDecoder)
     setup()
   }
   
   public override init(frame: CGRect) {
+    intensity = 0.5
     super.init(frame: frame)
     setup()
   }
@@ -98,18 +100,18 @@ import QuartzCore
   
   func confettiWithColor(color: UIColor) -> CAEmitterCell {
     let confetti = CAEmitterCell()
-    confetti.birthRate = 6.0 * intensity
-    confetti.lifetime = 14.0 * intensity
+    confetti.birthRate = 6.0 * Float(intensity)
+    confetti.lifetime = 14.0 * Float(intensity)
     confetti.lifetimeRange = 0
     confetti.color = color.cgColor
-    confetti.velocity = CGFloat(350.0 * intensity)
-    confetti.velocityRange = CGFloat(80.0 * intensity)
+    confetti.velocity = CGFloat(350.0 * Float(intensity))
+    confetti.velocityRange = CGFloat(80.0 * Float(intensity))
     confetti.emissionLongitude = CGFloat(Double.pi)
     confetti.emissionRange = CGFloat(Double.pi / 4)
-    confetti.spin = CGFloat(3.5 * intensity)
-    confetti.spinRange = CGFloat(4.0 * intensity)
-    confetti.scaleRange = CGFloat(intensity)
-    confetti.scaleSpeed = CGFloat(-0.1 * intensity)
+    confetti.spin = CGFloat(3.5 * Float(intensity))
+    confetti.spinRange = CGFloat(4.0 * Float(intensity))
+    confetti.scaleRange = CGFloat(Float(intensity))
+    confetti.scaleSpeed = CGFloat(-0.1 * Float(intensity))
     confetti.contents = imageForType(type: type)!.cgImage
     return confetti
   }
